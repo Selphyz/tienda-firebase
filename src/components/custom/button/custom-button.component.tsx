@@ -6,10 +6,10 @@ type CustomButton = {
     type?: any,
     value?: any,
     onClick?: aFuncion,
-    isGoogleSignIn?: boolean
+    isgooglesignin?: boolean
 }
 export const CustomButton: FunctionComponent<CustomButton> = (props) => (
-    <button className={`${props.isGoogleSignIn ? 'google-sign-in' : ''} custom-button`} {...props}>
+    <button className={`${props.isgooglesignin ? 'google-sign-in' : ''} custom-button`} {...props}>
         {props.children}
     </button>
 );

@@ -9,7 +9,7 @@ interface FormProps {
     handleChange: MyFunctionType;
     label: string;
     value: any;
-    required: any
+    required?: any
 }
 export const FormInput = (props: FormProps) => (
     <div className="group">
