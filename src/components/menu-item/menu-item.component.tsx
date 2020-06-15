@@ -7,7 +7,7 @@ interface MenuProps {
     linkUrl: string
 }
 
-const MenuItem = (props: MenuProps) => (
+export const MenuItem = (props: MenuProps) => (
     <div className={`${props.size} menu-item`}>
         <div className="background-image" style={{
             backgroundImage: `url(${props.imageUrl})`
@@ -19,4 +19,3 @@ const MenuItem = (props: MenuProps) => (
         </div>
     </div>
 );
-export default MenuItem;
