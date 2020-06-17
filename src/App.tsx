@@ -1,58 +1,64 @@
 import React from "react";
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
 import { HomePage } from "./pages/homepage/homepage.component";
 import { ShopPage } from "./pages/shop/shop.component";
-import { Header } from "./pages/header/header.component";
+import Header from "./pages/header/header.component";
 import { SignInAndSignUpPage } from "./pages/sign-in-up/sign-in-up.component";
-import { auth, createUserProfileDocument } from './firebase/firebase.utils'
+import { setCurrentUser } from "./redux/user/user.actions";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+
 interface AppState {
-  currentUser: any
 }
 interface AppProps {
-
+  setCurrentUser: any
+  currentUser?: any
 }
 class App extends React.Component<AppProps, AppState> {
-  constructor(props: AppProps) {
-    super(props);
-    this.state = {
-      currentUser: null
-    }
-  }
   unsubscribeFromAuth = null;
   componentDidMount() {
-    auth.onAuthStateChanged(async userAuth => {
+    const { setCurrentUser } = this.props;
+    auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         if (userRef !== undefined) {
           userRef.onSnapshot(snapShot => {
-            this.setState({
-              currentUser: {
-                id: snapShot.id, ...snapShot.data()
-              }
+            setCurrentUser({
+              id: snapShot.id,
+              ...snapShot.data()
             });
-            console.log(this.state);
+            console.log(snapShot.data());
+            console.log(snapShot.id);
+
           });
-        };
+        }
       }
-      this.setState({ currentUser: userAuth })
-      // this.setState({ currentUser: user })
+      setCurrentUser(userAuth);
       // createUserProfileDocument(user);
     });
-  };
+  }
   componentWillMount() {
     auth.signOut();
   }
   render() {
     return (
       <div>
-        <Header currentUser={this.state.currentUser} />
+        <Header />
         <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/shop' component={ShopPage} />
-          <Route exact path='/signin' component={SignInAndSignUpPage} />
+          <Route exact path="/" component={HomePage} />
+          <Route path="/shop" component={ShopPage} />
+          <Route exact path="/signin" render={() => 
+            this.props.currentUser ? (<Redirect to='/' />) : (<SignInAndSignUpPage />)} />
         </Switch>
-      </div>)
+      </div>
+    );
   }
 }
-export default App;
+const mapStateToProps = ({ user }: any) => ({
+  currentUser: user.currentUser
+});
+const mapDispatchToProps = (dispatch: (arg0: { type: string; payload: any; }) => any) => ({
+  setCurrentUser: (user: any) => dispatch(setCurrentUser(user))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(App);
