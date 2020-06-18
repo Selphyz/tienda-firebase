@@ -23,15 +23,8 @@ const Header = ({ currentUser, hidden }: HeaderProps): JSX.Element => (
       <Link className="option" to="/shop">
         CONTACT
       </Link>
-      {currentUser ? (
-        <div className="option" onClick={() => auth.signOut()}>
-          SIGN OUT
-        </div>
-      ) : (
-          <Link className="option" to="/signin">
-            SING IN
-          </Link>
-        )}
+      {currentUser ? (<div className="option" onClick={() => auth.signOut()}>SIGN OUT</div>
+      ) : (<Link className="option" to="/signin">SING IN</Link>)}
       <CartIcon />
     </div>
     {
@@ -43,6 +36,5 @@ const Header = ({ currentUser, hidden }: HeaderProps): JSX.Element => (
 const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }: any) => ({
   currentUser,
   hidden
-});
-
+})
 export default connect(mapStateToProps)(Header);
