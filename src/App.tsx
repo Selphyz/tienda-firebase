@@ -28,9 +28,6 @@ class App extends React.Component<AppProps, AppState> {
               id: snapShot.id,
               ...snapShot.data()
             });
-            console.log(snapShot.data());
-            console.log(snapShot.id);
-
           });
         }
       }
@@ -38,9 +35,9 @@ class App extends React.Component<AppProps, AppState> {
       // createUserProfileDocument(user);
     });
   }
-  componentWillMount() {
-    auth.signOut();
-  }
+  // componentWillMount() {
+  //   auth.signOut();
+  // }
   render() {
     return (
       <div>
@@ -48,7 +45,7 @@ class App extends React.Component<AppProps, AppState> {
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />
-          <Route exact path="/signin" render={() => 
+          <Route exact path="/signin" render={() =>
             this.props.currentUser ? (<Redirect to='/' />) : (<SignInAndSignUpPage />)} />
         </Switch>
       </div>

@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { ReactComponent as Logo } from "../../assets/computer_desktop_icon.svg";
 import { auth } from "../../firebase/firebase.utils";
-import { CartIcon } from "../../components/cart-icon/cart-icon.component";
-import { CartDropDown } from "../../components/cart-dropdown/cart-dropdown.component";
+import CartIcon from "../../components/cart-icon/cart-icon.component"
+import CartDropDown from "../../components/cart-dropdown/cart-dropdown.component";
 import "./header.styles.scss";
-
 // type User = any;
 interface HeaderProps {
-  currentUser?: any;
+  currentUser: any;
+  hidden: boolean
 }
-const Header = ({ currentUser }: HeaderProps): JSX.Element => (
+const Header = ({ currentUser, hidden }: HeaderProps): JSX.Element => (
   <div className="header">
     <Link className="logo-container" to="/">
       <Logo className="logo"></Logo>
@@ -34,12 +34,15 @@ const Header = ({ currentUser }: HeaderProps): JSX.Element => (
         )}
       <CartIcon />
     </div>
-    <CartDropDown />
+    {
+      hidden ? null : <CartDropDown />
+    }
   </div>
 );
 
-const mapStateToProps = (state: any) => ({
-  currentUser: state.user.currentUser,
+const mapStateToProps = ({ user: { currentUser }, cart: { hidden } }: any) => ({
+  currentUser,
+  hidden
 });
 
 export default connect(mapStateToProps)(Header);

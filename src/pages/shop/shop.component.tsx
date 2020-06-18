@@ -1,6 +1,6 @@
 import React from 'react';
-import { SHOP_DATA } from './shopdata';
-import { CollectionPreview } from '../../components/collection-preview/collection-preview.component';
+import SHOP_DATA from './shopdata';
+import CollectionPreview from '../../components/collection-preview/collection-preview.component';
 
 interface PaginaProps {
 
@@ -9,13 +9,13 @@ interface Collection {
     collections: DatosTienda[],
 }
 interface DatosTienda {
-    id?: number,
+    id: number,
     title: string,
     routeName: string,
     items: Item[]
 }
-interface Item {
-    id?: number,
+type Item = {
+    id: number,
     name: string
     imageUrl: string
     price: number

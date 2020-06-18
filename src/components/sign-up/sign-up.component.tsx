@@ -1,9 +1,8 @@
 import React from 'react';
 import './sign-up.styles.scss';
 import { FormInput } from '../form-input/form-input.component';
-import { CustomButton } from '../custom/button/custom-button.component';
-import firebase from 'firebase';
-import { createUserProfileDocument } from '../../firebase/firebase.utils';
+import CustomButton from '../custom-button/custom-button.component';
+import { createUserProfileDocument, auth } from '../../firebase/firebase.utils';
 
 interface SignUpProps {
 
@@ -28,7 +27,7 @@ export class SignUp extends React.Component<SignUpProps, SignUpState>{
             alert("passwords dont match");
         }
         try {
-            const { user } = await firebase.auth().createUserWithEmailAndPassword(email, password);
+            const { user } = await auth.createUserWithEmailAndPassword(email, password);
             await createUserProfileDocument(user, { displayName });
             this.setState({
                 displayName: "",
