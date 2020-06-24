@@ -9,6 +9,7 @@ import {
 import './checkout.styles.scss';
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
 import Item from '../../redux/cart/item.model';
+import StripeCheckoutButton from '../../components/stripe-button/stripe.button.component';
 interface CheckoutPageProps {
     cartItems: any,
     total: any
@@ -36,6 +37,9 @@ const CheckoutPage = ({ cartItems, total }: CheckoutPageProps) => (
             <CheckoutItem key={cartItem.id} cartItem={cartItem} />
         ))}
         <div className='total'>TOTAL: ${total}</div>
+        <div className="test-warning">Test credit card: <br />
+        4242 4242 4242 4242 -Exp 02/20 - CVV: 123</div>
+        <StripeCheckoutButton price={total} />
     </div>
 );
 
