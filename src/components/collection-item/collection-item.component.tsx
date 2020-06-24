@@ -4,15 +4,10 @@ import CustomButton from '../custom-button/custom-button.component';
 import { addItem } from '../../redux/cart/cart.actions';
 import './collection-item.styles.scss';
 import { CartActionTypes } from '../../redux/cart/cart.types';
+import { ShopItem } from '../../redux/shop/shop.model';
 
-type Item = {
-    id?: number
-    name: string
-    price: number
-    imageUrl: string
-}
 interface CollectionItemProps {
-    item: Item
+    item: ShopItem
     addItem?: any
 }
 

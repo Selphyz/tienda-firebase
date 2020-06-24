@@ -1,15 +1,15 @@
 export type ShopItem = {
-    id: number;
-    name: string;
-    imageUrl: string;
-    price: number;
+    id?: number | undefined;
+    name?: string | undefined;
+    imageUrl?: string | undefined;
+    price?: number | undefined;
 };
-export type ShopCategory = {
-    id: number;
+export type ShopCollection = {
+    id?: number;
     title: string;
     routeName: string;
     items: ShopItem[]
 }
 export type Shop = {
-    collections?: ShopCategory[]
+    Categoria: ShopCollection[]
 }
