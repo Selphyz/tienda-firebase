@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { ReactComponent as Logo } from "../../assets/computer_desktop_icon.svg";
 import { auth } from "../../firebase/firebase.utils";
-import CartIcon from "../../components/cart-icon/cart-icon.component"
-import CartDropDown from "../../components/cart-dropdown/cart-dropdown.component";
+import CartIcon from "../../components/cart-view/cart-icon/cart-icon.component"
+import CartDropDown from "../../components/cart-view/cart-dropdown/cart-dropdown.component";
 import "./header.styles.scss";
 // type User = any;
 interface HeaderProps {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './collection-preview.styles.scss';
-import CollectionItem from '../collection-item/collection-item.component';
-import { ShopStateItem } from '../../redux/shop/shop.model';
+import CollectionItem from './collection-item/collection-item.component';
+import { ShopStateItem } from '../../../redux/shop/shop.model';
 
 interface DatosTienda {
     id?: number,
