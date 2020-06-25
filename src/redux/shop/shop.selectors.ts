@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-const selectShop = (state) => state.shop;
+const selectShop = (state: { shop: any; }) => state.shop;
 
 export const selectCollections = createSelector(
     [selectShop],
@@ -12,7 +12,7 @@ export const selectCollectionsForPreview = createSelector(
     collections => Object.keys(collections).map(key => collections[key])
 );
 
-export const selectCollection = (collectionUrlParam) =>
+export const selectCollection = (collectionUrlParam: import("react").ReactText) =>
     createSelector(
         [selectCollections],
         collections => collections[collectionUrlParam]

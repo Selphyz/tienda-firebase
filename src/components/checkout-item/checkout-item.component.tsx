@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { clearItemFromCart, addItem, removeItem } from '../../redux/cart/cart.actions';
 import { CartActionTypes } from "../../redux/cart/cart.types";
 import './checkout-item.component.scss';
-import Item from '../../redux/cart/item.model';
-type itemFunction = (item: Item) => {
-    item: Item,
+import { CartStateItem } from '../../redux/cart/cart.model';
+type itemFunction = (item: CartStateItem) => {
+    item: CartStateItem,
     action: CartActionTypes
 };
 interface CheckoutItemProps {
-    cartItem: Item;
+    cartItem: CartStateItem;
     clearItem: itemFunction;
     addItem: itemFunction;
     removeItem: itemFunction;
@@ -31,9 +31,9 @@ const CheckoutItem = ({ cartItem, clearItem, addItem, removeItem }: CheckoutItem
             <div className="remove-button" onClick={() => clearItem(cartItem)}>&#10005;</div>
         </div>)
 }
-const mapDispatchToProps = (dispatch: (arg0: { type: CartActionTypes; payload: Item; }) => any) => ({
-    clearItem: (item: Item) => dispatch(clearItemFromCart(item)),
-    addItem: (item: Item) => dispatch(addItem(item)),
-    removeItem: (item: Item) => dispatch(removeItem(item))
+const mapDispatchToProps = (dispatch: (arg0: { type: CartActionTypes; payload: CartStateItem; }) => any) => ({
+    clearItem: (item: CartStateItem) => dispatch(clearItemFromCart(item)),
+    addItem: (item: CartStateItem) => dispatch(addItem(item)),
+    removeItem: (item: CartStateItem) => dispatch(removeItem(item))
 });
 export default connect(null, mapDispatchToProps)(CheckoutItem);

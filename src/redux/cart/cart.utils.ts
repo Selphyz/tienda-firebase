@@ -1,6 +1,6 @@
-import Item from "./item.model";
+import { CartStateItem } from "./cart.model";
 
-export const addItemToCart = (cartItems: Item[], cartItemToAdd: { id: number; }) => {
+export const addItemToCart = (cartItems: CartStateItem[], cartItemToAdd: { id: number; }) => {
     const existingCartItem = cartItems.find(
         cartItem => cartItem.id === cartItemToAdd.id
     );
@@ -15,7 +15,7 @@ export const addItemToCart = (cartItems: Item[], cartItemToAdd: { id: number; })
 
     return [...cartItems, { ...cartItemToAdd, quantity: 1 }];
 };
-export const removeItemFromCart = (cartItems: Item[], cartItemToRemove: Item) => {
+export const removeItemFromCart = (cartItems: CartStateItem[], cartItemToRemove: CartStateItem) => {
     const existingCartItem = cartItems.find(
         cartItem => cartItem.id === cartItemToRemove.id
     )

@@ -8,7 +8,7 @@ import {
 
 import './checkout.styles.scss';
 import CheckoutItem from '../../components/checkout-item/checkout-item.component';
-import Item from '../../redux/cart/item.model';
+import { CartStateItem } from '../../redux/cart/cart.model';
 import StripeCheckoutButton from '../../components/stripe-button/stripe.button.component';
 interface CheckoutPageProps {
     cartItems: any,
@@ -33,7 +33,7 @@ const CheckoutPage = ({ cartItems, total }: CheckoutPageProps) => (
                 <span>Remove</span>
             </div>
         </div>
-        {cartItems.map((cartItem: Item) => (
+        {cartItems.map((cartItem: CartStateItem) => (
             <CheckoutItem key={cartItem.id} cartItem={cartItem} />
         ))}
         <div className='total'>TOTAL: ${total}</div>

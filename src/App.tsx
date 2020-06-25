@@ -5,19 +5,18 @@ import { connect } from "react-redux";
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import Header from "./pages/header/header.component";
+import CheckoutPage from "./pages/checkout/checkout.component";
 import { SignInAndSignUpPage } from "./pages/sign-in-up/sign-in-up.component";
 import { setCurrentUser } from "./redux/user/user.actions";
-import { auth, createUserProfileDocument, addCollectionAddDocuments } from "./firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 import { selectCurrentUser } from "./redux/user/user.selectors";
-import CheckoutPage from "./pages/checkout/checkout.component";
-import { selectCollectionsForPreview } from "./redux/shop/shop.selectors";
+import { UserStateModel } from "./redux/user/user.model";
 
 interface AppState {
 }
 interface AppProps {
   setCurrentUser: any,
-  currentUser?: any,
-  collectionsArray: any
+  currentUser?: any
 }
 class App extends React.Component<AppProps, AppState> {
   unsubscribeFromAuth = null;
@@ -36,7 +35,6 @@ class App extends React.Component<AppProps, AppState> {
         }
       }
       setCurrentUser(userAuth);
-      addCollectionAddDocuments('collections', this.props.collectionsArray)
     });
   }
   render() {
@@ -54,9 +52,8 @@ class App extends React.Component<AppProps, AppState> {
     );
   }
 }
-const mapStateToProps = (state: { user: import("./redux/user/user.model").UserStateModel; }) => ({
-  currentUser: selectCurrentUser(state),
-  collectionsArray: selectCollectionsForPreview(state)
+const mapStateToProps = (state: { user: UserStateModel, shop: any }) => ({
+  currentUser: selectCurrentUser(state)
 });
 const mapDispatchToProps = (dispatch: (arg0: { type: import("./redux/user/user.types").UserActionTypes; payload: any; }) => any) => ({
   setCurrentUser: (user: any) => dispatch(setCurrentUser(user))

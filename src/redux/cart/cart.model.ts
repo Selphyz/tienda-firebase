@@ -1,8 +1,8 @@
 export interface CartStateModel {
     hidden: boolean;
-    cartItems?: (CartStateItems)[] | null;
+    cartItems?: (CartStateItem)[] | null;
 }
-export interface CartStateItems {
+export interface CartStateItem {
     id: number;
     name: string;
     imageUrl: string;
