@@ -4,10 +4,10 @@ import CustomButton from '../custom-button/custom-button.component';
 import { addItem } from '../../redux/cart/cart.actions';
 import './collection-item.styles.scss';
 import { CartActionTypes } from '../../redux/cart/cart.types';
-import { ShopItem } from '../../redux/shop/shop.model';
+import { ShopStateItem } from '../../redux/shop/shop.model';
 
 interface CollectionItemProps {
-    item: ShopItem
+    item: ShopStateItem
     addItem?: any
 }
 

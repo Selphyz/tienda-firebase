@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { selectDirectorySections } from '../../redux/directory/directory.selectors';
 import { MenuItem } from '../menu-item/menu-item.component';
-import { DirectoryModel } from '../../redux/directory/directory.model';
+import { DirectoryStateModel } from '../../redux/directory/directory.model';
 import './directory.styles.scss';
 
-const Directory = ({ sections }: DirectoryModel) => (
+const Directory = ({ sections }: DirectoryStateModel) => (
     <div className="directory-menu">
         {
             sections !== undefined ?

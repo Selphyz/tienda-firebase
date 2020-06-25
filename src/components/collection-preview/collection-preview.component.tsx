@@ -1,13 +1,13 @@
 import React from 'react';
 import './collection-preview.styles.scss';
 import CollectionItem from '../collection-item/collection-item.component';
-import { ShopItem } from '../../redux/shop/shop.model';
+import { ShopStateItem } from '../../redux/shop/shop.model';
 
 interface DatosTienda {
     id?: number,
     title: string,
     routeName: string,
-    items: ShopItem[]
+    items: ShopStateItem[]
 }
 
 const CollectionPreview = (props: DatosTienda) => (

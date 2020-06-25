@@ -1,15 +1,22 @@
-export type ShopItem = {
+export type ShopStateItem = {
     id?: number | undefined;
     name?: string | undefined;
     imageUrl?: string | undefined;
     price?: number | undefined;
 };
-export type ShopCollection = {
+export type ShopStateCollection = {
     id?: number;
     title: string;
     routeName: string;
-    items: ShopItem[]
+    items: (ShopStateItem)[] | null
 }
-export type Shop = {
-    Categoria: ShopCollection[]
+export interface Collections {
+    hats: ShopStateCollection;
+    sneakers: ShopStateCollection;
+    jackets: ShopStateCollection;
+    womens: ShopStateCollection;
+    mens: ShopStateCollection;
+}
+export interface ShopStateModel {
+    collections: Collections
 }

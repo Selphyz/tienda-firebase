@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
+import { UserStateModel } from './user.model';
 
-const selectUser = (state: { user: any; }) => state.user;
+const selectUser = (state: { user: UserStateModel; }) => state.user;
 
 export const selectCurrentUser = createSelector(
     [selectUser],

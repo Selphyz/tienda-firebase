@@ -12,6 +12,7 @@ const config = {
     appId: "1:275098824790:web:d884b667c6af1d69dacbf7",
     measurementId: "G-WHZSJEK2JJ"
 }
+firebase.initializeApp(config);
 export const createUserProfileDocument = async (userAuth, additionalData) => {
     if (!userAuth) return;
     const userRef = firestore.doc(`users/${userAuth.uid}`);
@@ -29,8 +30,10 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     }
     return userRef;
 }
-
-firebase.initializeApp(config);
+export const addCollectionAddDocuments = (collectionsKey, objectsToAdd) => {
+    const collectionRef = firestore.collection(collectionsKey);
+    console.log(collectionRef);
+}
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 
