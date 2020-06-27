@@ -8,10 +8,9 @@ import './directory.styles.scss';
 const Directory = ({ sections }: DirectoryStateModel) => (
     <div className="directory-menu">
         {
-            sections !== undefined ?
-                sections.map(({ id, ...otherSectionProps }) => (
-                    <MenuItem key={id} {...otherSectionProps} />
-                )) : null
+            sections !== undefined ? sections.map(({ id, ...otherSectionProps }) => (
+                <MenuItem key={id} {...otherSectionProps} />
+            )) : null
         }
     </div>
 );

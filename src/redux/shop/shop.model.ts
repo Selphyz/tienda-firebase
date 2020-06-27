@@ -8,13 +8,13 @@ export interface Collections {
     womens: ShopStateCollection;
     mens: ShopStateCollection;
 }
-export type ShopStateCollection = {
+export interface ShopStateCollection {
     id?: number;
     title: string;
     routeName: string;
-    items: (ShopStateItem)[] | null
+    items: (ShopStateItem)[]
 }
-export type ShopStateItem = {
+export interface ShopStateItem {
     id?: number | undefined;
     name?: string | undefined;
     imageUrl?: string | undefined;
