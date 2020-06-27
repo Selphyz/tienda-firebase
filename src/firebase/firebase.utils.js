@@ -39,7 +39,7 @@ export const addCollectionAddDocuments = async (collectionKey, objectsToAdd) => 
     });
     return await batch.commit();
 }
-export const convertCollectionSnapshopToMap = collections => {
+export const convertCollectionsSnapshotToMap = collections => {
     const trasformedCollection = collections.docs.map(doc => {
         const { title, items } = doc.data();
         return {
